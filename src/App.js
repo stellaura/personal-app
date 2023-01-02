@@ -1,24 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import MainList, { adder, subtractor } from './pages/MainList'
 
-function App() {
+const App = () => {
+  console.log(adder(1, 2))
+  console.log(subtractor(3, 7))
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>Hello World</div>
+      <MainList />
+    </>
   );
 }
 
