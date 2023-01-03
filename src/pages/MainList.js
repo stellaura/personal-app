@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const GoalCard = styled.ul`
@@ -30,23 +30,35 @@ const goals = [
   },
   {
     goalName: 'Diet',
-    isCompleted: false,
+    isCompleted: true,
     deadline: '2023.03.31.',
     notes: 'do it every day'
   }
 ]
 
 const MainList = () => {
+  const [goalList, setGoalList] = useState(goals)
+
+  console.log(goalList)
   return (
     <>
       <div>Main List</div>
       <ul>
         {
-        goals.map(
-          (goal) => (
-              <GoalCard key={goal.goalName}>
+        goalList.map(
+          (goal, i) => (
+              <GoalCard key={i}>
                 <li>Name: {goal.goalName}</li>
-                <li>isCompleted: {goal.isCompleted? "Done" : "Pending"}</li>
+                <li>isCompleted: {goal.isCompleted? "Done" : "Pending"} 
+                  <input 
+                    checked={goal.isCompleted}
+                    onChange={() => setGoalList(old => {
+                      old[i] = { ...goal, isCompleted: !goal.isCompleted }
+                      return [...old]
+                    })}
+                    type="checkbox" 
+                  />
+                </li>
                 <li>Deadline: {goal.deadline}</li>
                 <li>Notes: {goal.notes}</li>
               </GoalCard>
